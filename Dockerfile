@@ -23,7 +23,7 @@ RUN pecl install -o -f xdebug \
     && echo "zend_extension=/usr/local/lib/php/extensions/no-debug-non-zts-20131226/xdebug.so" > /usr/local/etc/php/conf.d/xdebug.ini
 
 # Install Mysql
-RUN docker-php-ext-install mysql mysqli
+RUN docker-php-ext-install mysql mysqli pdo_mysql
 
 COPY ./index.php /var/www/html/index.php
 
