@@ -25,6 +25,10 @@ RUN pecl install -o -f xdebug \
 # Install Mysql
 RUN docker-php-ext-install mysql mysqli pdo_mysql
 
+# Configure Apache Document Root
+ENV APACHE_DOC_ROOT /var/www/html
+COPY ./docker-entrypoint /usr/local/bin/
+
 COPY ./index.php /var/www/html/index.php
 
-
+ENTRYPOINT ["docker-entrypoint"]
