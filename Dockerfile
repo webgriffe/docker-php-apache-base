@@ -29,6 +29,9 @@ RUN docker-php-ext-install mysqli pdo_mysql
 RUN curl -sS https://getcomposer.org/installer | php \
     && mv composer.phar /usr/local/bin/composer
 
+# Install mbstring
+RUN docker-php-ext-install mbstring
+
 # Configure Apache Document Root
 ENV APACHE_DOC_ROOT /var/www/html
 COPY ./docker-entrypoint /usr/local/bin/
