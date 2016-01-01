@@ -43,6 +43,9 @@ ENV PHP_TIMEZONE Europe/Rome
 ENV APACHE_DOC_ROOT /var/www/html
 COPY ./docker-entrypoint /usr/local/bin/
 
+# Enable Apache mod_rewrite
+RUN a2enmod rewrite
+
 COPY ./index.php /var/www/html/index.php
 
 ENTRYPOINT ["docker-entrypoint"]
