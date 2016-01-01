@@ -40,6 +40,9 @@ RUN apt-get update \
 # Install opcache
 RUN docker-php-ext-install opcache
 
+# Define PHP_TIMEZONE env variable
+ENV PHP_TIMEZONE Europe/Rome
+
 # Configure Apache Document Root
 ENV APACHE_DOC_ROOT /var/www/html
 COPY ./docker-entrypoint /usr/local/bin/
