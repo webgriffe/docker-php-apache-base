@@ -36,3 +36,4 @@ COPY ./docker-entrypoint /usr/local/bin/
 COPY ./index.php /var/www/html/index.php
 
 ENTRYPOINT ["docker-entrypoint"]
+CMD ["apache2-foreground"]
