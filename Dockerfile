@@ -37,6 +37,9 @@ RUN apt-get update \
     && apt-get install -y libxml2-dev \
     && docker-php-ext-install soap
 
+# Install opcache
+RUN docker-php-ext-install opcache
+
 # Configure Apache Document Root
 ENV APACHE_DOC_ROOT /var/www/html
 COPY ./docker-entrypoint /usr/local/bin/
