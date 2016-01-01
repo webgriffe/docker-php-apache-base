@@ -20,7 +20,7 @@ RUN apt-get update \
 # Don't Install XDebug because version 2.4.0 (which is compatible with PHP 7) is not stable yet
 # RUN pecl install -o -f xdebug \
 #    && rm -rf /tmp/pear \
-#    && echo "zend_extension=/usr/local/lib/php/extensions/no-debug-non-zts-20131226/xdebug.so" > /usr/local/etc/php/conf.d/xdebug.ini
+#    && docker-php-ext-enable xdebug
 
 # Install Mysql
 RUN docker-php-ext-install mysqli pdo_mysql
