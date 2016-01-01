@@ -5,4 +5,4 @@ set -e
 sed -i "s|DocumentRoot /var/www/html|DocumentRoot $APACHE_DOC_ROOT|" /etc/apache2/sites-available/000-default.conf
 sed -i "s|DocumentRoot /var/www/html|DocumentRoot $APACHE_DOC_ROOT|" /etc/apache2/apache2.conf
 
-apache2-foreground
+exec "$@"
