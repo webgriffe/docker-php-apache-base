@@ -46,6 +46,9 @@ COPY ./docker-entrypoint /usr/local/bin/
 # Enable Apache mod_rewrite
 RUN a2enmod rewrite
 
+# Additional PHP ini configuration
+COPY ./999-php.ini /usr/local/etc/php/conf.d/
+
 COPY ./index.php /var/www/html/index.php
 
 ENTRYPOINT ["docker-entrypoint"]
