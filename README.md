@@ -11,6 +11,7 @@ Features
 * Ability to set PHP `date.timezone` through `PHP_TIMEZONE` environment variable. Default timezone is `Europe/Rome`
 * Enabled PHP extensions: gd, mcrypt, intl, xdebug, mysql, mysqli, pdo_mysql, mbstring, soap, opcache
 * Composer installed globally at `/usr/local/bin/composer`
+* Ability to set xdebug.remote_enable setting through `HOST_IP` environment variable.
 
 Usage
 -----
