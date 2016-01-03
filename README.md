@@ -9,8 +9,10 @@ Features
 * Ability to set Apache document root through `APACHE_DOC_ROOT` environment variable. Default document root is `/var/www/html`
 * Enabled Apache modules: rewrite
 * Ability to set PHP `date.timezone` through `PHP_TIMEZONE` environment variable. Default timezone is `Europe/Rome`
-* Enabled PHP extensions: gd, mcrypt, intl, xdebug, mysql, mysqli, pdo_mysql, mbstring, soap, opcache
+* Enabled PHP extensions: gd, mcrypt, intl, mysql, mysqli, pdo_mysql, mbstring, soap, opcache
 * Composer installed globally at `/usr/local/bin/composer`
+* Xdebug PHP extension installed but not enabled
+* Ability to enable xdebug PHP extension through `XDEBUG_ENABLE` environment variable which has to be set to `1`
 * Ability to set xdebug.remote_enable setting through `HOST_IP` environment variable.
 
 Usage

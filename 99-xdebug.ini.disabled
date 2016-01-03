@@ -1,0 +1,12 @@
+[xdebug]
+xdebug.remote_enable=on
+xdebug.default_enable=on
+xdebug.remote_autostart=off
+xdebug.remote_port=9000
+xdebug.profiler_enable_trigger=1
+xdebug.profiler_output_name=xdebug-profile-cachegrind.out-%H-%R
+xdebug.var_display_max_children = 128
+xdebug.var_display_max_data = 2048
+xdebug.var_display_max_depth = 128
+xdebug.max_nesting_level = 200
+xdebug.coverage_enable = 1

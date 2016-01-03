@@ -18,9 +18,10 @@ RUN apt-get update \
     && docker-php-ext-install intl
 
 # Install XDebug
+ENV XDEBUG_ENABLE 0
 RUN pecl install -o -f xdebug \
-    && rm -rf /tmp/pear \
-    && docker-php-ext-enable xdebug
+    && rm -rf /tmp/pear
+COPY ./99-xdebug.ini.disabled /usr/local/etc/php/conf.d/
 
 # Install Mysql
 RUN docker-php-ext-install mysql mysqli pdo_mysql
