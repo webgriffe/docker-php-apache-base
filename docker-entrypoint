@@ -9,6 +9,12 @@ echo "date.timezone = $PHP_TIMEZONE" > /usr/local/etc/php/conf.d/timezone.ini
 sed -i "s|DocumentRoot /var/www/html|DocumentRoot $APACHE_DOC_ROOT|" /etc/apache2/sites-available/000-default.conf
 sed -i "s|DocumentRoot /var/www/html|DocumentRoot $APACHE_DOC_ROOT|" /etc/apache2/apache2.conf
 
+# Allow /unison to be Apache Document Root
+echo "<Directory /unison/>" >> /etc/apache2/apache2.conf
+echo "	AllowOverride All" >> /etc/apache2/apache2.conf
+echo "	Require all granted" >> /etc/apache2/apache2.conf
+echo "</Directory>" >> /etc/apache2/apache2.conf
+
 # Enable XDebug if needed
 if [ "$XDEBUG_ENABLE" = "1" ]; then
     docker-php-ext-enable xdebug
