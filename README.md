@@ -15,6 +15,7 @@ Features
 * Ability to enable xdebug PHP extension through `XDEBUG_ENABLE` environment variable which has to be set to `1`
 * Ability to set xdebug.remote_enable setting through `HOST_IP` environment variable.
 * Blackfire.io Probe installed
+* GIT installed (required by Composer)
 
 Usage
 -----
