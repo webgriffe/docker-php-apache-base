@@ -43,6 +43,10 @@ RUN docker-php-ext-install opcache
 # Install PHP zip extension
 RUN docker-php-ext-install zip
 
+# Install Git
+RUN apt-get update \
+    && apt-get install -y git
+
 # Define PHP_TIMEZONE env variable
 ENV PHP_TIMEZONE Europe/Rome
 
