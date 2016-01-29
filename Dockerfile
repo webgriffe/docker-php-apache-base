@@ -53,7 +53,6 @@ ENV PHP_TIMEZONE Europe/Rome
 
 # Configure Apache Document Root
 ENV APACHE_DOC_ROOT /var/www/html
-COPY ./docker-entrypoint /usr/local/bin/
 
 # Enable Apache mod_rewrite
 RUN a2enmod rewrite
@@ -71,5 +70,6 @@ RUN export VERSION=`php -r "echo PHP_MAJOR_VERSION.PHP_MINOR_VERSION;"` \
 # Sample index.php with phpinfo() and entrypoint
 COPY ./index.php /var/www/html/index.php
 
-ENTRYPOINT ["docker-entrypoint"]
-CMD ["apache2-foreground"]
+# Start!
+COPY ./start /usr/local/bin/
+CMD ["start"]
