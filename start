@@ -27,4 +27,4 @@ if [ "$XDEBUG_ENABLE" = "1" ]; then
     echo "xdebug.remote_host=$HOST_IP" > /usr/local/etc/php/conf.d/xdebug_remote_host.ini
 fi;
 
-exec "$@"
+exec "apache2-foreground"
