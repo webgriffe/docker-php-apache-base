@@ -15,4 +15,4 @@ echo "	AllowOverride All" >> /etc/apache2/apache2.conf
 echo "	Require all granted" >> /etc/apache2/apache2.conf
 echo "</Directory>" >> /etc/apache2/apache2.conf
 
-exec "$@"
+exec "apache2-foreground"

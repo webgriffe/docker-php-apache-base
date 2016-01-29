@@ -52,7 +52,6 @@ ENV PHP_TIMEZONE Europe/Rome
 
 # Configure Apache Document Root
 ENV APACHE_DOC_ROOT /var/www/html
-COPY ./docker-entrypoint /usr/local/bin/
 
 # Enable Apache mod_rewrite
 RUN a2enmod rewrite
@@ -62,5 +61,6 @@ COPY ./999-php.ini /usr/local/etc/php/conf.d/
 
 COPY ./index.php /var/www/html/index.php
 
-ENTRYPOINT ["docker-entrypoint"]
-CMD ["apache2-foreground"]
+# Start!
+COPY ./start /usr/local/bin/
+CMD ["start"]
