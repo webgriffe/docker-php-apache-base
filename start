@@ -6,11 +6,16 @@ set -e
 echo "date.timezone = $PHP_TIMEZONE" > /usr/local/etc/php/conf.d/timezone.ini
 
 # Configure Apache Document Root
+mkdir -p $APACHE_DOC_ROOT
+chown www-data:www-data $APACHE_DOC_ROOT
 sed -i "s|DocumentRoot /var/www/html|DocumentRoot $APACHE_DOC_ROOT|" /etc/apache2/apache2.conf
 echo "<Directory $APACHE_DOC_ROOT>" > /etc/apache2/conf-available/document-root-directory.conf
 echo "	AllowOverride All" >> /etc/apache2/conf-available/document-root-directory.conf
 echo "	Require all granted" >> /etc/apache2/conf-available/document-root-directory.conf
 echo "</Directory>" >> /etc/apache2/conf-available/document-root-directory.conf
 a2enconf "document-root-directory.conf"
+
+# Set group permissions for path $APACHE_DOC_ROOT
+set_docroot_group_perms
 
 exec "apache2-foreground"
