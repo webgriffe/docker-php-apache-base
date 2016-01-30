@@ -70,6 +70,13 @@ RUN export VERSION=`php -r "echo PHP_MAJOR_VERSION.PHP_MINOR_VERSION;"` \
 # Sample index.php with phpinfo() and entrypoint
 COPY ./index.php /var/www/html/index.php
 
+# Add www-data to root group and viceversa
+RUN usermod -a -G www-data root
+RUN usermod -a -G root www-data
+
+# Add Document Root group permissions set script
+COPY ./set_docroot_group_perms /usr/local/bin/
+
 # Start!
 COPY ./start /usr/local/bin/
 CMD ["start"]

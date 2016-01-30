@@ -6,6 +6,8 @@ set -e
 echo "date.timezone = $PHP_TIMEZONE" > /usr/local/etc/php/conf.d/timezone.ini
 
 # Configure Apache Document Root
+mkdir -p $APACHE_DOC_ROOT
+chown www-data:www-data $APACHE_DOC_ROOT
 sed -i "s|DocumentRoot /var/www/html|DocumentRoot $APACHE_DOC_ROOT|" /etc/apache2/apache2.conf
 echo "<Directory $APACHE_DOC_ROOT>" > /etc/apache2/conf-available/document-root-directory.conf
 echo "	AllowOverride All" >> /etc/apache2/conf-available/document-root-directory.conf
@@ -24,5 +26,9 @@ if [ "$XDEBUG_ENABLE" = "1" ]; then
     fi;
     echo "xdebug.remote_host=$HOST_IP" > /usr/local/etc/php/conf.d/xdebug_remote_host.ini
 fi;
+
+
+# Set group permissions for path $APACHE_DOC_ROOT
+set_docroot_group_perms
 
 exec "apache2-foreground"
