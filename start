@@ -15,7 +15,4 @@ echo "	Require all granted" >> /etc/apache2/conf-available/document-root-directo
 echo "</Directory>" >> /etc/apache2/conf-available/document-root-directory.conf
 a2enconf "document-root-directory.conf"
 
-# Set group permissions for path $APACHE_DOC_ROOT
-set_docroot_group_perms
-
 exec "apache2-foreground"
