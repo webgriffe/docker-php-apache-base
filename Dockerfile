@@ -17,10 +17,12 @@ RUN apt-get update \
     && apt-get install -y libicu-dev \
     && docker-php-ext-install intl
 
-# Don't Install XDebug because version 2.4.0 (which is compatible with PHP 7) is not stable yet
-# RUN pecl install -o -f xdebug \
-#    && rm -rf /tmp/pear \
-#    && docker-php-ext-enable xdebug
+ENV XDEBUG_ENABLE 0
+RUN pecl config-set preferred_state beta \
+    && pecl install -o -f xdebug \
+    && rm -rf /tmp/pear \
+    && pecl config-set preferred_state stable
+COPY ./99-xdebug.ini.disabled /usr/local/etc/php/conf.d/
 
 # Install Mysql
 RUN docker-php-ext-install mysqli pdo_mysql

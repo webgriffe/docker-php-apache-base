@@ -15,4 +15,16 @@ echo "	Require all granted" >> /etc/apache2/conf-available/document-root-directo
 echo "</Directory>" >> /etc/apache2/conf-available/document-root-directory.conf
 a2enconf "document-root-directory.conf"
 
+# Enable XDebug if needed
+if [ "$XDEBUG_ENABLE" = "1" ]; then
+    docker-php-ext-enable xdebug
+    mv /usr/local/etc/php/conf.d/99-xdebug.ini.disabled /usr/local/etc/php/conf.d/99-xdebug.ini
+    # Configure XDebug remote host
+    if [ -z "$HOST_IP" ]; then
+        # Allows to set HOST_IP by env variable because could be different from the one which come from ip route command
+        HOST_IP=$(/sbin/ip route|awk '/default/ { print $3 }')
+    fi;
+    echo "xdebug.remote_host=$HOST_IP" > /usr/local/etc/php/conf.d/xdebug_remote_host.ini
+fi;
+
 exec "apache2-foreground"
