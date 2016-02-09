@@ -48,6 +48,11 @@ RUN docker-php-ext-install zip
 RUN apt-get update \
     && apt-get install -y git
 
+# Install xsl
+RUN apt-get update \
+    && apt-get install -y libxslt-dev \
+    && docker-php-ext-install xsl
+
 # Define PHP_TIMEZONE env variable
 ENV PHP_TIMEZONE Europe/Rome
 
