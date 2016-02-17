@@ -15,6 +15,8 @@ Features
 * Ability to enable xdebug PHP extension through `XDEBUG_ENABLE` environment variable which has to be set to `1`
 * Ability to set xdebug.remote_enable setting through `HOST_IP` environment variable.
 * GIT installed (required by Composer)
+* sSMTP installed (as Mail Transfer Agent for PHP mail function)
+* Ability to set sSMTP mailhub, AuthUser and AuthPass through `SSMTP_MAILHUB`, `SSMTP_AUTH_USER` and `SSMTP_AUTH_PASS` environment variables
 
 Usage
 -----

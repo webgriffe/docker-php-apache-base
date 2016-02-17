@@ -75,6 +75,15 @@ RUN usermod -a -G root www-data
 # Add Document Root group permissions set script
 COPY ./set_docroot_group_perms /usr/local/bin/
 
+# Install ssmtp Mail Transfer Agent
+RUN apt-get update \
+    && apt-get install -y ssmtp \
+    && apt-get clean \
+    && echo "FromLineOverride=YES" >> /etc/ssmtp/ssmtp.conf \
+    && echo 'sendmail_path = "/usr/sbin/ssmtp -t"' > /usr/local/etc/php/conf.d/mail.ini
+
+########################################################################################################################
+
 # Start!
 COPY ./start /usr/local/bin/
 CMD ["start"]
