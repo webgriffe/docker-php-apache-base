@@ -16,6 +16,8 @@ Features
 * Ability to set xdebug.remote_enable setting through `HOST_IP` environment variable.
 * Blackfire.io Probe installed
 * GIT installed (required by Composer)
+* sSMTP installed (as Mail Transfer Agent for PHP mail function)
+* Ability to set sSMTP mailhub, AuthUser and AuthPass through `SSMTP_MAILHUB`, `SSMTP_AUTH_USER` and `SSMTP_AUTH_PASS` environment variables
 
 Usage
 -----
