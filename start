@@ -27,4 +27,15 @@ if [ "$XDEBUG_ENABLE" = "1" ]; then
     echo "xdebug.remote_host=$HOST_IP" > /usr/local/etc/php/conf.d/xdebug_remote_host.ini
 fi;
 
+# Configure sSMTP
+if [ "$SSMTP_MAILHUB" ]; then
+    echo "mailhub=$SSMTP_MAILHUB" >> /etc/ssmtp/ssmtp.conf
+fi;
+if [ "$SSMTP_AUTH_USER" ]; then
+    echo "AuthUser=$SSMTP_AUTH_USER" >> /etc/ssmtp/ssmtp.conf
+fi;
+if [ "$SSMTP_AUTH_PASS" ]; then
+    echo "AuthPass=$SSMTP_AUTH_PASS" >> /etc/ssmtp/ssmtp.conf
+fi;
+
 exec "apache2-foreground"
