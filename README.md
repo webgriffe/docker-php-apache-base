@@ -17,6 +17,7 @@ Features
 * GIT installed (required by Composer)
 * sSMTP installed (as Mail Transfer Agent for PHP mail function)
 * Ability to set sSMTP mailhub, AuthUser and AuthPass through `SSMTP_MAILHUB`, `SSMTP_AUTH_USER` and `SSMTP_AUTH_PASS` environment variables
+* MySQL CLI Client installed
 
 Usage
 -----

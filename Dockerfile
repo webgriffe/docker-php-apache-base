@@ -82,6 +82,10 @@ RUN apt-get update \
     && echo "FromLineOverride=YES" >> /etc/ssmtp/ssmtp.conf \
     && echo 'sendmail_path = "/usr/sbin/ssmtp -t"' > /usr/local/etc/php/conf.d/mail.ini
 
+# Install MySQL CLI Client
+RUN apt-get update \
+    && apt-get install -y mysql-client
+
 ########################################################################################################################
 
 # Start!
