@@ -1,6 +1,9 @@
 Base PHP with Apache Docker Container
 =====================================
 
+[![](https://images.microbadger.com/badges/version/webgriffe/php-apache-base.svg)](http://microbadger.com/images/webgriffe/php-apache-base "Get your own version badge on microbadger.com")
+[![](https://images.microbadger.com/badges/image/webgriffe/php-apache-base.svg)](http://microbadger.com/images/webgriffe/php-apache-base "Get your own version badge on microbadger.com")
+
 Dockerized environment for PHP web development and Apache web server.
 
 Features
