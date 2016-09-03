@@ -68,13 +68,6 @@ COPY ./999-php.ini /usr/local/etc/php/conf.d/
 
 COPY ./index.php /var/www/html/index.php
 
-# Add www-data to root group and viceversa
-RUN usermod -a -G www-data root
-RUN usermod -a -G root www-data
-
-# Add Document Root group permissions set script
-COPY ./set_docroot_group_perms /usr/local/bin/
-
 # Install ssmtp Mail Transfer Agent
 RUN apt-get update \
     && apt-get install -y ssmtp \
