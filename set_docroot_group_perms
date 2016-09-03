@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-
-chmod g+rwx $APACHE_DOC_ROOT
-find $APACHE_DOC_ROOT -type d -exec chmod g+rwx {} \;
-find $APACHE_DOC_ROOT -type f -exec chmod g+rw {} \;
