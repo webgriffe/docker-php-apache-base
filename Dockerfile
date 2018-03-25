@@ -19,7 +19,7 @@ RUN apt-get update \
 
 # Install XDebug
 ENV XDEBUG_ENABLE 0
-RUN pecl install -o -f xdebug \
+RUN pecl install -o -f xdebug-2.5.5 \
     && rm -rf /tmp/pear
 COPY ./99-xdebug.ini.disabled /usr/local/etc/php/conf.d/
 
