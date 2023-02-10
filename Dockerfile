@@ -1,16 +1,17 @@
-FROM php:7.0-apache
+FROM php:7.4-apache
 MAINTAINER Webgriffe Srl <support@webgriffe.com>
 
 # Install GD
 RUN apt-get update \
-    && apt-get install -y libfreetype6-dev libjpeg62-turbo-dev libpng12-dev \
-    && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
+    && apt-get install -y libfreetype6-dev libjpeg62-turbo-dev libpng16-16 \
+    && docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/include/ \
     && docker-php-ext-install gd
 
 # Install MCrypt
 RUN apt-get update \
     && apt-get install -y libmcrypt-dev \
-    && docker-php-ext-install mcrypt
+    && pecl install mcrypt-1.0.3 \
+    && docker-php-ext-enable mcrypt
 
 # Install Intl
 RUN apt-get update \
@@ -19,7 +20,7 @@ RUN apt-get update \
 
 ENV XDEBUG_ENABLE 0
 RUN pecl config-set preferred_state beta \
-    && pecl install -o -f xdebug \
+    && pecl install -o -f xdebug-3.0.0 \
     && rm -rf /tmp/pear \
     && pecl config-set preferred_state stable
 COPY ./99-xdebug.ini.disabled /usr/local/etc/php/conf.d/
@@ -30,6 +31,10 @@ RUN docker-php-ext-install mysqli pdo_mysql
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php \
     && mv composer.phar /usr/local/bin/composer
+
+# Install Oniguruma
+RUN apt-get update \
+    && apt-get install -y libonig-dev
 
 # Install mbstring
 RUN docker-php-ext-install mbstring
@@ -43,7 +48,9 @@ RUN apt-get update \
 RUN docker-php-ext-install opcache
 
 # Install PHP zip extension
-RUN docker-php-ext-install zip
+RUN apt-get update \
+    && apt-get install -y libzip-dev \
+    && docker-php-ext-install zip
 
 # Install Git
 RUN apt-get update \
@@ -77,7 +84,7 @@ RUN apt-get update \
 
 # Install MySQL CLI Client
 RUN apt-get update \
-    && apt-get install -y mysql-client
+    && apt-get install -y default-mysql-client
 
 ########################################################################################################################
 
