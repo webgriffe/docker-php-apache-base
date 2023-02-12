@@ -1,4 +1,4 @@
-FROM php:7.4-apache
+FROM php:8.0-apache
 MAINTAINER Webgriffe Srl <support@webgriffe.com>
 
 # Install GD
@@ -10,7 +10,7 @@ RUN apt-get update \
 # Install MCrypt
 RUN apt-get update \
     && apt-get install -y libmcrypt-dev \
-    && pecl install mcrypt-1.0.3 \
+    && pecl install mcrypt-1.0.4 \
     && docker-php-ext-enable mcrypt
 
 # Install Intl
@@ -67,6 +67,9 @@ ENV PHP_TIMEZONE Europe/Rome
 # Configure Apache Document Root
 ENV APACHE_DOC_ROOT /var/www/html
 
+# Configure Apache ServerName
+ENV APACHE_SERVER_NAME localhost
+
 # Enable Apache mod_rewrite
 RUN a2enmod rewrite
 
@@ -81,6 +84,12 @@ RUN apt-get update \
     && apt-get clean \
     && echo "FromLineOverride=YES" >> /etc/ssmtp/ssmtp.conf \
     && echo 'sendmail_path = "/usr/sbin/ssmtp -t"' > /usr/local/etc/php/conf.d/mail.ini
+
+# Install imap
+RUN apt-get update \
+    && apt-get install -y libc-client-dev libkrb5-dev \
+    && docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
+    && docker-php-ext-install imap
 
 # Install MySQL CLI Client
 RUN apt-get update \

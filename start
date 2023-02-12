@@ -15,6 +15,11 @@ echo "	Require all granted" >> /etc/apache2/conf-available/document-root-directo
 echo "</Directory>" >> /etc/apache2/conf-available/document-root-directory.conf
 a2enconf "document-root-directory.conf"
 
+# Set ServerName Directive
+echo "ServerName $APACHE_SERVER_NAME" > /etc/apache2/conf-available/server-name.conf
+a2enconf "server-name.conf"
+
+
 # Enable XDebug if needed
 if [ "$XDEBUG_ENABLE" = "1" ]; then
     docker-php-ext-enable xdebug
