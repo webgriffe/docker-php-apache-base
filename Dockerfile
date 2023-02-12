@@ -1,4 +1,4 @@
-FROM php:7.4-apache
+FROM php:8.0-apache
 MAINTAINER Webgriffe Srl <support@webgriffe.com>
 
 # Install GD
@@ -10,7 +10,7 @@ RUN apt-get update \
 # Install MCrypt
 RUN apt-get update \
     && apt-get install -y libmcrypt-dev \
-    && pecl install mcrypt-1.0.3 \
+    && pecl install mcrypt-1.0.4 \
     && docker-php-ext-enable mcrypt
 
 # Install Intl
@@ -66,6 +66,9 @@ ENV PHP_TIMEZONE Europe/Rome
 
 # Configure Apache Document Root
 ENV APACHE_DOC_ROOT /var/www/html
+
+# Configure Apache ServerName
+ENV APACHE_SERVER_NAME localhost
 
 # Enable Apache mod_rewrite
 RUN a2enmod rewrite
