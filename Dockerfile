@@ -85,6 +85,12 @@ RUN apt-get update \
     && echo "FromLineOverride=YES" >> /etc/ssmtp/ssmtp.conf \
     && echo 'sendmail_path = "/usr/sbin/ssmtp -t"' > /usr/local/etc/php/conf.d/mail.ini
 
+# Install imap
+RUN apt-get update \
+    && apt-get install -y libc-client-dev libkrb5-dev \
+    && docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
+    && docker-php-ext-install imap
+
 # Install MySQL CLI Client
 RUN apt-get update \
     && apt-get install -y default-mysql-client
